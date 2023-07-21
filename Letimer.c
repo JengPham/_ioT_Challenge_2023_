@@ -38,7 +38,7 @@ void letimer0Enable(void){
 
 void batteryLevel(uint8_t* count, uint16_t* battery) {
     (*count)++;
-    if (*count == 3) {
+    if (*count == 151) {
         *battery = *battery - 1;
         *count = 0;
     }
@@ -58,7 +58,7 @@ void LETIMER0_IRQHandler(void){
   LETIMER_IntClear(LETIMER0, flags);
 
   DHT_DataTypedef DHT_data;
-  char Mois[4],Cell[4], Temp[4], Humi[4]; /*Data[10]*/
+  char Mois[4],Cell[4], Temp[4], Humi[4];
 
   uint16_t batLevel;
 
@@ -95,34 +95,31 @@ void LETIMER0_IRQHandler(void){
                                                              Mois[0], Mois[1], Mois[2],
                                                              Temp[0], Temp[1], Temp[2],
                                                              Humi[0], Humi[1], Humi[2],
-                                                             Cell[0], Cell[1], Cell[1],
+                                                             Cell[0], Cell[1], Cell[2],
                                                              checkSum[0], checkSum[1]};
 
   /* Transmit data sensor */
   transmitData(dataTransmit, sizeof(dataTransmit)-1);
 
   uint32_t k = 10000000; /* Wait for a period of time to receive a signal response from the station */
-    bool i = true;
-    char receivedData;
-    while (i){
+    char response;
+    while (1){
         k--;
         if( USART0->STATUS & USART_STATUS_RXDATAV ){
-        receivedData = (uint8_t)USART0->RXDATA;
-        if( receivedData == '1' ){
-            i= false;
+        response = (uint8_t)USART0->RXDATA;
+        if( response == '1' ){
+            break;
         }
-        else if ( receivedData == '0' ){
-            i= false;
+        else if ( response == '0' ){
             transmitData(dataTransmit, sizeof(dataTransmit)-1); /* Retransmit the data because the previous data may be corrupted. */
+            break;
         }
         }
         else if(k==0){
-            i=false;
             transmitData(dataTransmit, sizeof(dataTransmit)-1); /* Retransmit the data as there is no response */
+            break;
         }
     }
-
-
 }
 
 

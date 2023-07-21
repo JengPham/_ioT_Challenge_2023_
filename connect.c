@@ -32,6 +32,7 @@ void connectToStation(void){
        GPIO_PinOutToggle(GPIO_PORTB, 2);
        USTIMER_DeInit();
    }
+
    /* Station phản hổi không được ghép --> Vào EM4 */
    else if(response[0] == '0' && response[1] == '0'){
        GPIO_PinModeSet(GPIO_PORTB, 4, gpioModePushPull, 0);
@@ -40,5 +41,4 @@ void connectToStation(void){
        USTIMER_DelayIntSafe(2000000);
        EMU_EnterEM4();
    }
-
 }

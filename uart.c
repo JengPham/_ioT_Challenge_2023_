@@ -28,7 +28,6 @@ void uartInit(void){
 
 }
 
-
 void transmitData(char* dataArray, uint8_t length)
 {
   for (uint8_t i = 0; i < length; i++)
@@ -58,8 +57,6 @@ void concatenateArrays(const char* a, const char* b, const char* c, const char* 
     strcat(sum, c);
     strcat(sum, d);
 }
-
-
 
 void uint16ToCharArray(uint16_t number, char* array, int arraySize) {
     snprintf(array, arraySize, "%03u", number);
