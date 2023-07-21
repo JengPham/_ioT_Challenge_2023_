@@ -6,27 +6,27 @@
 C_SRCS += \
 ../DHT22.c \
 ../Letimer.c \
-../adc.c \
 ../connect.c \
 ../flash.c \
+../iadc.c \
 ../iadcScan.c \
 ../uart.c 
 
 OBJS += \
 ./DHT22.o \
 ./Letimer.o \
-./adc.o \
 ./connect.o \
 ./flash.o \
+./iadc.o \
 ./iadcScan.o \
 ./uart.o 
 
 C_DEPS += \
 ./DHT22.d \
 ./Letimer.d \
-./adc.d \
 ./connect.d \
 ./flash.d \
+./iadc.d \
 ./iadcScan.d \
 ./uart.d 
 
@@ -46,13 +46,6 @@ Letimer.o: ../Letimer.c subdir.mk
 	@echo 'Finished building: $<'
 	@echo ' '
 
-adc.o: ../adc.c subdir.mk
-	@echo 'Building file: $<'
-	@echo 'Invoking: GNU ARM C Compiler'
-	arm-none-eabi-gcc -mcpu=cortex-m33 -mthumb -std=c99 '-DNDEBUG=1' -Os -Wall -ffunction-sections -fdata-sections -mfpu=fpv5-sp-d16 -mfloat-abi=softfp -MMD -MP -MF"adc.d" -MT"$@" -o "$@" "$<"
-	@echo 'Finished building: $<'
-	@echo ' '
-
 connect.o: ../connect.c subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: GNU ARM C Compiler'
@@ -64,6 +57,13 @@ flash.o: ../flash.c subdir.mk
 	@echo 'Building file: $<'
 	@echo 'Invoking: GNU ARM C Compiler'
 	arm-none-eabi-gcc -mcpu=cortex-m33 -mthumb -std=c99 '-DNDEBUG=1' -Os -Wall -ffunction-sections -fdata-sections -mfpu=fpv5-sp-d16 -mfloat-abi=softfp -MMD -MP -MF"flash.d" -MT"$@" -o "$@" "$<"
+	@echo 'Finished building: $<'
+	@echo ' '
+
+iadc.o: ../iadc.c subdir.mk
+	@echo 'Building file: $<'
+	@echo 'Invoking: GNU ARM C Compiler'
+	arm-none-eabi-gcc -mcpu=cortex-m33 -mthumb -std=c99 '-DNDEBUG=1' -Os -Wall -ffunction-sections -fdata-sections -mfpu=fpv5-sp-d16 -mfloat-abi=softfp -MMD -MP -MF"iadc.d" -MT"$@" -o "$@" "$<"
 	@echo 'Finished building: $<'
 	@echo ' '
 

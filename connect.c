@@ -13,10 +13,10 @@ char address[6];
 void connectToStation(void){
 
    char dataToConnect[] = { 0xFF, 0xFF, 0x17, '1', '1', 0x00, 0x01};
-   transmitData(dataToConnect, sizeof (dataToConnect)-1);
+   transmitData(dataToConnect, sizeof (dataToConnect));
 
    /* Nhận phản hồi từ Station xem có được ghép đôi? */
-   char response[5];
+   char response[4];
    for (uint8_t i=0 ; i<4; i++){
        response[i] = USART_Rx(USART0);
    }

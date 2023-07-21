@@ -38,7 +38,7 @@ void letimer0Enable(void){
 
 void batteryLevel(uint8_t* count, uint16_t* battery) {
     (*count)++;
-    if (*count == 150) {
+    if (*count == 3) {
         *battery = *battery - 1;
         *count = 0;
     }
@@ -58,7 +58,9 @@ void LETIMER0_IRQHandler(void){
   LETIMER_IntClear(LETIMER0, flags);
 
   DHT_DataTypedef DHT_data;
-  char Mois[4],Cell[4], Temp[4], Humi[4]; 
+  char Mois[4],Cell[4], Temp[4], Humi[4]; /*Data[10]*/
+
+  uint16_t batLevel;
 
   /* Get Moisture */
   iadcStartsingle();
@@ -71,10 +73,10 @@ void LETIMER0_IRQHandler(void){
 
   /* Get battery level */
   batteryLevel(&count, &battery);
-  uint16_t batLevel = battery;
- 
-  /* Create a data string */
+  batLevel = battery;
   uint16ToCharArray(batLevel, Cell, 4);
+
+  /* Create a data string */
   uint16ToCharArray(Humidity, Humi, 4);
   uint16ToCharArray(Moisture, Mois, 4);
   uint16ToCharArray(Temperature, Temp, 4);
@@ -82,7 +84,7 @@ void LETIMER0_IRQHandler(void){
                                                            Mois[0], Mois[1], Mois[2],
                                                            Temp[0], Temp[1], Temp[2],
                                                            Humi[0], Humi[1], Humi[2],
-                                                           Cell[0], Cell[1], Cell[1]};
+                                                           Cell[0], Cell[1], Cell[2]};
   /* Calculate Checksum */
   uint16_t checksum = calculateChecksum(data_sensor, sizeof(data_sensor));
   char checkSum[3];
@@ -100,56 +102,27 @@ void LETIMER0_IRQHandler(void){
   transmitData(dataTransmit, sizeof(dataTransmit)-1);
 
   uint32_t k = 10000000; /* Wait for a period of time to receive a signal response from the station */
-  char receivedData;
-    while (1){
+    bool i = true;
+    char receivedData;
+    while (i){
         k--;
         if( USART0->STATUS & USART_STATUS_RXDATAV ){
         receivedData = (uint8_t)USART0->RXDATA;
         if( receivedData == '1' ){
-            break;
+            i= false;
         }
         else if ( receivedData == '0' ){
+            i= false;
             transmitData(dataTransmit, sizeof(dataTransmit)-1); /* Retransmit the data because the previous data may be corrupted. */
-            break;
         }
         }
         else if(k==0){
+            i=false;
             transmitData(dataTransmit, sizeof(dataTransmit)-1); /* Retransmit the data as there is no response */
-            break;
         }
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 

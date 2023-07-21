@@ -42,7 +42,7 @@ main-build: IoT_Challenge.axf
 IoT_Challenge.axf: $(OBJS) $(USER_OBJS) makefile objects.mk $(OPTIONAL_TOOL_DEPS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: GNU ARM C Linker'
-	arm-none-eabi-gcc -mcpu=cortex-m33 -mthumb -T "IoT_Challenge.ld" -Xlinker --gc-sections -Xlinker -Map="IoT_Challenge.map" -mfpu=fpv5-sp-d16 -mfloat-abi=softfp --specs=nano.specs -o IoT_Challenge.axf "./DHT22.o" "./Letimer.o" "./adc.o" "./connect.o" "./flash.o" "./iadcScan.o" "./uart.o" -Wl,--start-group -lgcc -lc -lnosys -Wl,--end-group
+	arm-none-eabi-gcc -mcpu=cortex-m33 -mthumb -T "IoT_Challenge.ld" -Xlinker --gc-sections -Xlinker -Map="IoT_Challenge.map" -mfpu=fpv5-sp-d16 -mfloat-abi=softfp --specs=nano.specs -o IoT_Challenge.axf "./DHT22.o" "./Letimer.o" "./connect.o" "./flash.o" "./iadc.o" "./iadcScan.o" "./uart.o" -Wl,--start-group -lgcc -lc -lnosys -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

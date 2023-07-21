@@ -115,34 +115,6 @@ Discarded input sections
  .text          0x00000000        0x0 ./iadc.o
  .data          0x00000000        0x0 ./iadc.o
  .bss           0x00000000        0x0 ./iadc.o
- .text          0x00000000        0x0 ./iadcScan.o
- .data          0x00000000        0x0 ./iadcScan.o
- .bss           0x00000000        0x0 ./iadcScan.o
- .text.IADC_command
-                0x00000000       0x12 ./iadcScan.o
- .rodata        0x00000000       0x28 ./iadcScan.o
- .text.initIadcScan
-                0x00000000      0x198 ./iadcScan.o
- .text.iadcStartScan
-                0x00000000       0x38 ./iadcScan.o
- .bss.Mois      0x00000000        0x8 ./iadcScan.o
- .text.get_Moisture
-                0x00000000       0x90 ./iadcScan.o
- .bss.Temp      0x00000000        0x8 ./iadcScan.o
- .text.get_Temp
-                0x00000000       0x88 ./iadcScan.o
- .debug_info    0x00000000     0x2bdc ./iadcScan.o
- .debug_abbrev  0x00000000      0x1f7 ./iadcScan.o
- .debug_loc     0x00000000      0x10d ./iadcScan.o
- .debug_aranges
-                0x00000000       0x40 ./iadcScan.o
- .debug_ranges  0x00000000       0x30 ./iadcScan.o
- .debug_line    0x00000000      0x32b ./iadcScan.o
- .debug_str     0x00000000     0x2ef1 ./iadcScan.o
- .comment       0x00000000       0x4a ./iadcScan.o
- .debug_frame   0x00000000       0xa0 ./iadcScan.o
- .ARM.attributes
-                0x00000000       0x3a ./iadcScan.o
  .text          0x00000000        0x0 ./main.o
  .data          0x00000000        0x0 ./main.o
  .bss           0x00000000        0x0 ./main.o
@@ -822,7 +794,6 @@ LOAD ./app.o
 LOAD ./connect.o
 LOAD ./flash.o
 LOAD ./iadc.o
-LOAD ./iadcScan.o
 LOAD ./main.o
 LOAD ./uart.o
 LOAD ./autogen/sl_board_default_init.o
