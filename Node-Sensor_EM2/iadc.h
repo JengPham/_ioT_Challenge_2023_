@@ -8,6 +8,9 @@
 #ifndef IADC_H_
 #define IADC_H_
 
+#define MoisturePort   gpioPortC
+#define MoisturePin    4
+
 #include "em_iadc.h"
 #include "em_cmu.h"
 #include "uart.h"

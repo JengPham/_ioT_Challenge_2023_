@@ -19,6 +19,6 @@ typedef struct
 }DHT_DataTypedef;
 
 
-void DHT_GetData (DHT_DataTypedef *DHT_Data);
+void DHT_GetData (DHT_DataTypedef *z);
 
 #endif /* DHT22_H_ */

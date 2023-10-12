@@ -17,7 +17,7 @@
 int main(void)
 {
 
-  sl_system_init();
+   sl_system_init();
   app_init();
 
 #if defined(SL_CATALOG_KERNEL_PRESENT)

@@ -27,7 +27,12 @@ gecko_sdk_4.3.1/platform/common/toolchain/src \
 gecko_sdk_4.3.1/platform/driver/debug/src \
 gecko_sdk_4.3.1/platform/emdrv/ustimer/src \
 gecko_sdk_4.3.1/platform/emlib/src \
+gecko_sdk_4.3.1/platform/security/sl_component/se_manager/src \
+gecko_sdk_4.3.1/platform/security/sl_component/sl_mbedtls_support/src \
+gecko_sdk_4.3.1/platform/security/sl_component/sl_psa_driver/src \
 gecko_sdk_4.3.1/platform/service/device_init/src \
 gecko_sdk_4.3.1/platform/service/system/src \
 gecko_sdk_4.3.1/platform/service/udelay/src \
+gecko_sdk_4.3.1/util/silicon_labs/silabs_core/memory_manager \
+gecko_sdk_4.3.1/util/third_party/mbedtls/library \
 

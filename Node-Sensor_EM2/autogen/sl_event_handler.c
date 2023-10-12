@@ -11,6 +11,7 @@
 #include "sl_device_init_emu.h"
 #include "sl_board_control.h"
 #include "sl_debug_swo.h"
+#include "sl_mbedtls.h"
 #include "sl_cos.h"
 
 void sl_platform_init(void)
@@ -36,6 +37,7 @@ void sl_driver_init(void)
 void sl_service_init(void)
 {
   sl_board_configure_vcom();
+  sl_mbedtls_init();
 }
 
 void sl_stack_init(void)

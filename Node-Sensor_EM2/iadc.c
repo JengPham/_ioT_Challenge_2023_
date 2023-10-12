@@ -39,7 +39,7 @@ void iadcInit(void){
 
 uint16_t getMoisture(void){
   float Sum = 0;
-  for(uint8_t i = 0; i < 7; i++){
+  for(uint8_t i = 0; i < 12; i++){
       IADC_command(IADC0, iadcCmdStartSingle);
       while(!IADC_IF_SINGLEDONE);
       if(i>1){
@@ -47,7 +47,7 @@ uint16_t getMoisture(void){
           Sum = (sample.data * 2.42 / 0xFFF) + Sum;
       }
   }
-  float voltage = Sum / 5;
+  float voltage = Sum / 10;
   uint16_t Moisture = ((3.0 - voltage) / 3.0) * 1000;
   return Moisture;
 }

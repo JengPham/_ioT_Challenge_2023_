@@ -1,6 +1,6 @@
 # Silicon Labs Project Configuration Tools: slcp, v0, Component selection file.
-project_name: Node-Sensor_EM2
-label: Node-Sensor_EM2
+project_name: Node-Sensor_Final
+label: Node-Sensor_Final
 description: |
   This example project shows an empty configuration that can be used as a starting point to add components and functionality.
 category: Example|Platform
@@ -24,14 +24,15 @@ sdk: {id: gecko_sdk, version: 4.3.1}
 toolchain_settings: []
 component:
 - {id: EFR32MG24B210F1536IM48}
-- {id: emlib_eusart}
+- {id: mbedtls_aes}
 - {id: emlib_iadc}
-- {id: emlib_letimer}
 - {id: radio_config_brd_wisun_singlephy}
 - {id: sl_system}
+- {id: brd4186c}
+- {id: emlib_eusart}
+- {id: emlib_letimer}
 - {id: device_init}
 - {id: brd4002a}
-- {id: brd4186c}
 - {id: device_init_hfrco}
 - {id: ustimer}
 define:
